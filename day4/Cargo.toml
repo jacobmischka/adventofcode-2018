@@ -1,0 +1,11 @@
+[package]
+name = "day4"
+version = "0.1.0"
+authors = ["Jacob Mischka <jacob@mischka.me>"]
+edition = "2018"
+
+[dependencies]
+helpers = { path = "../helpers" }
+chrono = "0.4.6"
+regex = "1.1.0"
+lazy_static = "1.2.0"
