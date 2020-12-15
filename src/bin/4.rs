@@ -1,10 +1,11 @@
-use chrono::{Duration, NaiveDate, NaiveDateTime};
+use chrono::{Duration, NaiveDateTime};
 use lazy_static::lazy_static;
 use regex::Regex;
 
-use std::collections::HashMap;
-
-use helpers::get_input;
+use std::{
+    collections::HashMap,
+    io::{self, BufRead},
+};
 
 #[derive(Debug)]
 struct Shift {
@@ -105,7 +106,7 @@ fn main() {
     }
 
     let mut messages = Vec::new();
-    for line in get_input().split("\n") {
+    for line in io::stdin().lock().lines().filter_map(Result::ok) {
         if line.len() == 0 {
             continue;
         }

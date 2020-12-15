@@ -1,7 +1,0 @@
-[package]
-name = "helpers"
-version = "0.1.0"
-authors = ["Jacob Mischka <jacob@mischka.me>"]
-edition = "2018"
-
-[dependencies]

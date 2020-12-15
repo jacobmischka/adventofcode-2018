@@ -1,2 +1,7 @@
 input.txt
 target/
+
+
+# Added by cargo
+
+/target

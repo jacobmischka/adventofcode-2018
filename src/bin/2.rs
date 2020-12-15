@@ -1,8 +1,9 @@
 use itertools::Itertools;
 
-use std::collections::HashMap;
-
-use helpers::get_input;
+use std::{
+    collections::HashMap,
+    io::{self, BufRead},
+};
 
 fn main() {
     part1();
@@ -13,7 +14,7 @@ fn part1() {
     let mut counts = HashMap::new();
     let mut twos = 0;
     let mut threes = 0;
-    for line in get_input().split_whitespace() {
+    for line in io::stdin().lock().lines().filter_map(Result::ok) {
         for c in line.chars() {
             counts.insert(
                 c,
@@ -47,7 +48,12 @@ fn part1() {
 }
 
 fn part2() {
-    for pair in get_input().split_whitespace().combinations(2) {
+    for pair in io::stdin()
+        .lock()
+        .lines()
+        .filter_map(Result::ok)
+        .combinations(2)
+    {
         let len = pair[0].len();
         let mut samesies = Vec::new();
         for (c1, c2) in pair[0].chars().zip(pair[1].chars()) {

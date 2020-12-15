@@ -1,8 +1,9 @@
 //! This is not efficient.
 
-use std::collections::{HashMap, HashSet};
-
-use helpers::get_input;
+use std::{
+    collections::{HashMap, HashSet},
+    io::{self, BufRead},
+};
 
 struct Claim {
     id: u32,
@@ -56,19 +57,12 @@ impl Claim {
     fn bottom(&self) -> u32 {
         self.top + self.height
     }
-
-    fn intersects(&self, other: &Claim) -> bool {
-        self.left() <= other.right()
-            && self.right() >= other.left()
-            && self.top() <= other.bottom()
-            && self.bottom() >= other.top()
-    }
 }
 
 fn main() {
     let mut grid: HashMap<(u32, u32), Vec<u32>> = HashMap::new();
     let mut intact = HashSet::new();
-    for line in get_input().split("\n") {
+    for line in io::stdin().lock().lines().filter_map(Result::ok) {
         if let Some(claim) = Claim::from_claim(&line) {
             intact.insert(claim.id);
 

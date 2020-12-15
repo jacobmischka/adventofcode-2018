@@ -1,6 +1,7 @@
-use std::collections::HashSet;
-
-use helpers::get_input;
+use std::{
+    collections::HashSet,
+    io::{self, BufRead},
+};
 
 fn main() {
     part1();
@@ -9,7 +10,8 @@ fn main() {
 
 fn part1() {
     let mut freq: i32 = 0;
-    for line in get_input().split_whitespace() {
+    for line in io::stdin().lock().lines() {
+        let line = line.unwrap();
         let mag: i32 = line[1..].parse().unwrap();
         if &line[..1] == "-" {
             freq -= mag
@@ -25,10 +27,10 @@ fn part2() {
     let mut freq: i32 = 0;
     let mut freqs = HashSet::new();
 
-    let input = get_input();
+    let input: Vec<String> = io::stdin().lock().lines().filter_map(Result::ok).collect();
 
     loop {
-        for line in input.split_whitespace() {
+        for line in input.iter() {
             let mag: i32 = line[1..].parse().unwrap();
             if &line[..1] == "-" {
                 freq -= mag
